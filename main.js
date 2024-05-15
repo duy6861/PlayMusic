@@ -11,7 +11,7 @@ const progress = $('#progress');
 const nextBtn = $('.btn-next');
 const prevBtn = $('.btn-prev');
 const randomBtn = $('.btn-random');
-const repeatBtn = $('.btn-repeat')
+const repeatBtn = $('.btn-repeat');
 const app = {
     currentIndex: 0,
     isPlaying: false,
@@ -70,7 +70,7 @@ const app = {
     render: function () {
         const htmls = this.songs.map((song, index) => {
             return `
-                    <div class="song ${index === this.currentIndex ? 'active' : ''}">
+                    <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">
                     <div
                         class="thumb"
                         style="
@@ -132,7 +132,7 @@ const app = {
         audio.onpause = function () {
             _this.isPlaying = false;
             player.classList.remove('playing')
-            cdRotate.pause()
+            cdRotate.pause();
         }
         // handle music rewind
         audio.ontimeupdate = function () {
@@ -187,9 +187,27 @@ const app = {
             _this.isRepeat = !_this.isRepeat;
             repeatBtn.classList.toggle('active', _this.isRepeat)
         }
+        playList.onclick = function (e) {
+            const songNode = e.target.closest('.song:not(.active)')
+            if (songNode || e.target.closest('.option')) {
+                if (songNode) {
+                    _this.currentIndex = Number(songNode.dataset.index);
+                    _this.loadCurrentSong();
+                    _this.render()
+                    audio.play();
+                }
+            }
+        }
+
     },
     scrollToActiveSong: function () {
+        setTimeout(() => {
+            $('.song.active').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
 
+            })
+        }, 300)
     },
     loadCurrentSong: function () {
         heading.textContent = this.currentSong.name;
