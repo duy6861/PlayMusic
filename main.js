@@ -10,11 +10,13 @@ const playBtn = $('.btn-toggle-play');
 const progress = $('#progress');
 const nextBtn = $('.btn-next');
 const prevBtn = $('.btn-prev');
-const randomBtn = $('.btn-random')
+const randomBtn = $('.btn-random');
+const repeatBtn = $('.btn-repeat')
 const app = {
     currentIndex: 0,
     isPlaying: false,
     isRandom: false,
+    isRepeat: false,
     songs: [
         {
             name: 'Chúng Ta Của Tương Lai',
@@ -66,9 +68,9 @@ const app = {
         }
     ],
     render: function () {
-        const htmls = this.songs.map(song => {
+        const htmls = this.songs.map((song, index) => {
             return `
-                    <div class="song">
+                    <div class="song ${index === this.currentIndex ? 'active' : ''}">
                     <div
                         class="thumb"
                         style="
@@ -156,24 +158,38 @@ const app = {
             }
 
             audio.play();
+            _this.render();
+            _this.scrollToActiveSong()
         }
         //handle prev song
         prevBtn.onclick = function () {
             _this.prevSong();
             audio.play();
+            _this.render();
+            _this.scrollToActiveSong()
         }
         //handle random song
         randomBtn.onclick = function () {
             _this.isRandom = !_this.isRandom;
             randomBtn.classList.toggle('active', _this.isRandom)
-            // _this.currentIndex = Math.floor(Math.random() * _this.songs.length)
-            // _this.loadCurrentSong()
-            // audio.play()
         }
+        //handle when ended
         audio.onended = function () {
-            console.log(123)
-            nextBtn.click()
+            if (_this.isRepeat) {
+                audio.play()
+            }
+            else {
+                nextBtn.click()
+            }
         }
+        //handle repeat
+        repeatBtn.onclick = function () {
+            _this.isRepeat = !_this.isRepeat;
+            repeatBtn.classList.toggle('active', _this.isRepeat)
+        }
+    },
+    scrollToActiveSong: function () {
+
     },
     loadCurrentSong: function () {
         heading.textContent = this.currentSong.name;
