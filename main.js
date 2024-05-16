@@ -1,3 +1,4 @@
+const PLAYER_STORAGE_KEY = 'F8_PLAYER'
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const player = $('.player');
@@ -17,6 +18,7 @@ const app = {
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
+    config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
     songs: [
         {
             name: 'Chúng Ta Của Tương Lai',
@@ -67,6 +69,11 @@ const app = {
             image: '/assets/img/toi-la-ai.png'
         }
     ],
+    setConfig: function (key, value) {
+        this.config[key] = value;
+        localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config))
+
+    },
     render: function () {
         const htmls = this.songs.map((song, index) => {
             return `
@@ -171,6 +178,7 @@ const app = {
         //handle random song
         randomBtn.onclick = function () {
             _this.isRandom = !_this.isRandom;
+            _this.setConfig('isRandom', _this.isRandom)
             randomBtn.classList.toggle('active', _this.isRandom)
         }
         //handle when ended
@@ -185,6 +193,7 @@ const app = {
         //handle repeat
         repeatBtn.onclick = function () {
             _this.isRepeat = !_this.isRepeat;
+            _this.setConfig('isRepeat', _this.isRepeat)
             repeatBtn.classList.toggle('active', _this.isRepeat)
         }
         playList.onclick = function (e) {
@@ -214,6 +223,12 @@ const app = {
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
         audio.src = this.currentSong.path;
     },
+    loadConfig: function () {
+        this.isRandom = this.config.isRandom;
+        this.isRepeat = this.config.isRepeat;
+        randomBtn.classList.toggle('active', this.isRandom)
+        repeatBtn.classList.toggle('active', this.isRepeat)
+    },
     nextSong: function () {
         this.currentIndex++;
         if (this.currentIndex >= this.songs.length) {
@@ -239,6 +254,8 @@ const app = {
         this.loadCurrentSong()
     },
     start: function () {
+        //assign configuration from config to application
+        this.loadConfig()
         //Defines properties for the object
         this.defineProperties()
         //Listen and process events(DOM Event)
