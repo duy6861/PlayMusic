@@ -23,50 +23,50 @@ const app = {
         {
             name: 'Chúng Ta Của Tương Lai',
             singer: 'Sơn Tùng',
-            path: '/assets/music/chung-ta-cua-tuong-lai.mp3',
-            image: '/assets/img/chung-ta-cua-tuong-lai.png'
+            path: 'assets/music/chung-ta-cua-tuong-lai.mp3',
+            image: 'assets/img/chung-ta-cua-tuong-lai.png'
         },
         {
             name: 'Chúng Ta Của Hiện Tại',
             singer: 'Sơn Tùng',
-            path: '/assets/music/chung-ta-cua-hien-tai.mp3',
-            image: '/assets/img/chung_ta_caa_hien_tai.jpg'
+            path: 'assets/music/chung-ta-cua-hien-tai.mp3',
+            image: 'assets/img/chung_ta_caa_hien_tai.jpg'
         },
         {
             name: 'Có Chắc Yêu Là Đây',
             singer: 'Sơn Tùng',
-            path: '/assets/music/co-chac-yeu-la-day.mp3',
-            image: '/assets/img/co-chac-yeu-la-day.jpg'
+            path: 'assets/music/co-chac-yeu-la-day.mp3',
+            image: 'assets/img/co-chac-yeu-la-day.jpg'
         },
         {
             name: 'Trái Tim Giữa Bầu Trời',
             singer: 'Trịnh Đình Quang',
-            path: '/assets/music/trai-tim-giua-bau-troi.mp3',
-            image: '/assets/img/trai-timgiua-bau-troi.jpg'
+            path: 'assets/music/trai-tim-giua-bau-troi.mp3',
+            image: 'assets/img/trai-timgiua-bau-troi.jpg'
         },
         {
             name: 'Thịnh Vượng Việt Nam Sáng Ngời',
             singer: 'Bùi Trường Linh',
-            path: '/assets/music/thinh-vuong-viet-nam.mp3',
-            image: '/assets/img/thinh-vuong-viet-nam.jpg'
+            path: 'assets/music/thinh-vuong-viet-nam.mp3',
+            image: 'assets/img/thinh-vuong-viet-nam.jpg'
         },
         {
             name: 'Vệt Nắng Cuối Trời',
             singer: 'Tiến Minh',
-            path: '/assets/music/viet-nang-cuoi-troi.mp3',
-            image: '/assets/img/vet-nang-cuoi-troi.jpg'
+            path: 'assets/music/viet-nang-cuoi-troi.mp3',
+            image: 'assets/img/vet-nang-cuoi-troi.jpg'
         },
         {
             name: 'Tốt Cho Cả Hai',
             singer: 'Trung Quân',
-            path: '/assets/music/tot-cho-ca-hai.mp3',
-            image: '/assets/img/tot-cho-ca-hai.jpg'
+            path: 'assets/music/tot-cho-ca-hai.mp3',
+            image: 'assets/img/tot-cho-ca-hai.jpg'
         },
         {
             name: 'Tôi Là Ai Và Đây Là Đâu',
             singer: 'Lục Hải Đào',
-            path: '/assets/music/toi-la-ai.mp3',
-            image: '/assets/img/toi-la-ai.png'
+            path: 'assets/music/toi-la-ai.mp3',
+            image: 'assets/img/toi-la-ai.png'
         }
     ],
     setConfig: function (key, value) {
